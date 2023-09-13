@@ -46,7 +46,7 @@ app.get('/weather', (req, res) => {
         })
     }
 
-    geocode(req.query.address, (error, { latitude, longitude, location }) => {
+    geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
             return res.send({ error })
         }
@@ -57,9 +57,9 @@ app.get('/weather', (req, res) => {
             }
 
             res.send({
-                forecast:forecastData,
+                forecast: forecastData,
                 location,
-                address:req.query.address
+                address: req.query.address
             })
         })
     })
@@ -71,7 +71,6 @@ app.get('/products', (req, res) => {
             error: 'You must provide a search term'
         })
     }
-    console.log(req.query.search)
     res.send({
         products: []
     })
